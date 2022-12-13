@@ -1,73 +1,65 @@
-let operacion = prompt("Ingrese el tipo de operacion (+ , - , * , /)");
-let numUno = prompt("ingrese el primer numero")
-numUno = parseInt(numUno)
-let numDos = prompt ("ingrese el segundo numero")
-numDos= parseInt(numDos)
-let numRep = prompt("ingrese el numero de veces que desea repetir la operacion")
-let res = numUno
+const productos = [
+  { categoria:"Almacenamiento", nombre: "Solido", precio: 500 },
+  { categoria:"Almacenamiento", nombre: "Rigido", precio: 1000 },
+  { categoria:"Procesadores", nombre: "Intel", precio: 3500 },
+  { categoria:"Procesadores", nombre: "AMD", precio: 3000 },
+  { categoria:"Mother", nombre: "Intel", precio: 1200 },
+  { categoria:"Mother", nombre: "AMD", precio: 1200 },
+  { categoria:"RAM", nombre: "DDR4", precio: 1500 },
+  { categoria:"RAM", nombre: "DDR5", precio: 1800 },
+  { categoria:"Video", nombre: "MSI", precio: 5000 },
+  { categoria:"Video", nombre: "Gigabyte", precio: 5500 },
+]
 
-function suma(res, numDos) {
-  res = res + numDos;
-  return res;
+function mostrarProductos (productos) { //muestra listo prod
+  productos.forEach((producto) => {
+    console.log("Producto: " + producto.nombre);
+    console.log("Categoria: " + producto.categoria);
+    console.log("Precio: " + producto.precio);
+    })
 }
-function resta(res, numDos) {
-  res = res - numDos;
-  return res;
-}
-function division(res, numDos) {
-  res = res / numDos;
-  return res;
-}
-function multiplicacion(res, numDos) {
-  res = res * numDos;
-  return res;
+function filtrarProductosCat (productos , cat){ //filtra por categoria
+  const producto = productos.filter((productos) => productos.categoria.includes (cat)) ;
+  return producto;
 }
 
+//mostrarProductos(productos) //muestra la lista sin filtrar
 
-switch (operacion) {
-  case "+":
-    
-    for(let i=0; i<numRep; i++){
-        res=suma(res,numDos)
-    }
-    alert("el resultado de sumarle "+numDos+" a "+ numUno + " un total de "+ numRep + " veces es: "+res)
-    break;
+const almacenamiento = filtrarProductosCat(productos , "Almacenamiento") //filtrado almacenamiento
+almacenamiento.forEach((alm) => {
+  console.log("Producto: " + alm.nombre);
+  console.log("Categoria: " + alm.categoria);
+  console.log("Precio: " + alm.precio);
+  })
 
-  case "-":
-    
-    for(let i=0; i<numRep; i++){
-        res=resta(res,numDos)
-    }
-    alert("el resultado de restarle "+numDos+" a "+ numUno + " un total de "+ numRep + " veces es: "+res)
-    break;
+const procesadores = filtrarProductosCat(productos , "Procesadores") //filtrado procesadores
+procesadores.forEach((pro) => {
+  console.log("Producto: " + pro.nombre);
+  console.log("Categoria: " + pro.categoria);
+  console.log("Precio: " + pro.precio);
+  })
 
-  case "*":
+  const mother = filtrarProductosCat(productos , "Mother") // filtrado mother
+mother.forEach((mot) => {
+  console.log("Producto: " + mot.nombre);
+  console.log("Categoria: " + mot.categoria);
+  console.log("Precio: " + mot.precio);
+  })
 
-    for(let i=0; i<numRep; i++){
-      res=multiplicacion(res,numDos)
-  }
-  alert("el resultado de multiplicar "+numDos+" con "+ numUno + " un total de "+ numRep + " veces es: "+res)
-    break;
+  const ram = filtrarProductosCat(productos , "RAM") //filtrado RAM
+  ram.forEach((r) => {
+    console.log("Producto: " + r.nombre);
+    console.log("Categoria: " + r.categoria);
+    console.log("Precio: " + r.precio);
+    })
+  
+    const video = filtrarProductosCat(productos , "Video") // filtrado Video
+    video.forEach((vid) => {
+      console.log("Producto: " + vid.nombre);
+      console.log("Categoria: " + vid.categoria);
+      console.log("Precio: " + vid.precio);
+      })
 
-  case "/":
+      const totalProductos = productos.reduce((ac , producto) => ac + producto.precio, 0)  //calculo precio
+      console.log("El precio de los productos es: " + totalProductos);
 
-    if (numDos == 0){
-      alert("no se puede dividir por 0")
-      break;
-
-    }
-    else{
-      
-      for(let i=0; i<numRep; i++){
-      res=division(res,numDos)
-      }
-
-    }
-    alert("el resultado de dividir "+numUno+" por "+ numDos + " un total de "+ numRep + " veces es: "+res)
-    break;
-
-  default:
-    alert("ingrese una operacion valida")
-    break;
-
-}
